@@ -1,0 +1,26 @@
+section{
+    padding: 60px 60px;
+    font-family: 'Libre Franklin';
+}
+
+.contenedor-hora{
+    display: flex;
+    max-width: 500px;
+    justify-content: space-between;
+    
+}
+
+.contenedor-btn{
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+h3{
+    margin-bottom: 40px;
+}
+

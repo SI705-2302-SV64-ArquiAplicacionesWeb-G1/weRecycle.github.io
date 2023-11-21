@@ -1,0 +1,104 @@
+
+<div class="container">
+  <h3>No tienes un centro de reciclaje</h3>
+  <h2>Registra tu Centro de Reciclaje y 
+    Contribuye al Cambio Ambiental Positivo</h2>
+  <form [formGroup]="form" (submit)="onSubmit()">
+  
+    <mat-form-field class="example-full-width">
+      <mat-label for="nameRecyclingCenter">Nombre</mat-label>
+      <input matInput type="text" id="nameRecyclingCenter" formControlName="nameRecyclingCenter" required>
+    </mat-form-field> <br/>
+
+    
+    
+<div class="container-flex"> 
+  <mat-form-field class="form-hora" >   
+      <mat-label for="openinghourRecyclingCenter">Hora de apertura:</mat-label>
+      <input matInput type="number" id="openinghourRecyclingCenter" (blur)="checkValue()" formControlName="openinghourRecyclingCenter" required max="24" min="0">
+      <mat-error *ngIf="form.get('hora')?.hasError('max')">
+        La hora no puede ser mayor a 24.
+      </mat-error>
+    </mat-form-field> 
+    <br/>
+    
+    <mat-form-field class="form-hora" >
+      <mat-label for="closingtimeRecyclingCenter">Hora de apertura:</mat-label>
+      <input matInput type="number" id="closingtimeRecyclingCenter" (blur)="checkValue()" formControlName="closingtimeRecyclingCenter" required max="24" min="0">
+      <mat-error *ngIf="form.get('hora')?.hasError('max')">
+        La hora no puede ser mayor a 24.
+      </mat-error>
+    </mat-form-field> <br/>
+
+</div>
+    
+<div class="container-flex">
+  <mat-form-field class="form-ciudad">
+    <mat-label for="addressUbication">Dirección</mat-label>
+    <input matInput type="text" id="addressUbication" formControlName="addressUbication" required>
+  </mat-form-field> <br/>
+  
+
+  <mat-form-field class="form-ciudad">
+    <input type="text" placeholder="Distrito" matInput formControlName="cityUbication" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredTipoCiudad | async" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  
+</div>
+    
+  <br/>
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label for="contactUbication">Número de contacto</mat-label>
+    <input matInput type="number" id="contactUbication" formControlName="contactUbication" required pattern="9\d{8}">
+    <mat-error *ngIf="form.get('contactUbication')?.hasError('required')">El número de contacto es obligatorio.</mat-error>
+    <mat-error *ngIf="form.get('contactUbication')?.hasError('pattern')">El número de contacto debe comenzar con '9' y tener exactamente 9 dígitos.</mat-error>
+  </mat-form-field>
+
+
+<mat-form-field class="example-full-width">
+  <mat-label>Tipo</mat-label>
+  <mat-select formControlName="typeUbication">
+  <mat-option *ngFor="let p of tipos" [value]="p.value">
+  {{ p.viewValue }}
+  </mat-option>
+  </mat-select>
+  </mat-form-field>
+<br />
+
+    <h3 class="text-left">Ingrese una descripción de su centro de reciclaje</h3>
+    <mat-form-field class="example-full-width">
+      <mat-label for="licenseRecyclingCenter">Descripción</mat-label>
+      <textarea matInput type="text" id="licenseRecyclingCenter" formControlName="licenseRecyclingCenter" required  style="height: 110px;"></textarea>
+    </mat-form-field>
+    <br/>
+  
+
+
+    <mat-form-field class="example-full-width">
+      <mat-label for="descUbication">Referencia de Ubicación:</mat-label>
+      <input matInput type="text" id="descUbication" formControlName="descUbication">
+    </mat-form-field> <br/>
+
+    <h3 class="text-left">Suba portada de centro de reciclaje</h3>
+     
+    <div class="contenedor-portada">
+      <img class="img-portada"*ngIf="url" [src]="url" style="max-width: 100%;  height: 450px;">
+    <br>
+    </div>
+<input type="file" (change)="onSelect($event)">
+    <br>
+<div class="contenedor-btn">
+  <button class="btn-verde btn-regular"  type="submit" [disabled]="!form.valid">Subir</button>
+  <button class="btn-rojo btn-regular" onclick="window.location.href=''" >Cancelar</button>
+</div>
+    
+  </form>
+</div>
+
+

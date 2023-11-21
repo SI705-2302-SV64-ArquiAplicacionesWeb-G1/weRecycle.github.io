@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte01</title>
+  </head>
+  <body>
+    <div class="container" style="display: flex; flex-wrap: wrap;">
+      <div style="text-align: center; width: 100%;">
+        <h1 >Cantidad de like por publicacion</h1>
+      </div>
+      <div style="text-align: center; width: 40%; justify-content: center; align-items: center; margin-left: 400px;">
+        <canvas
+          baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+         
+          [legend]="barChartLegend"
+          [type]="barChartType"
+        >
+
+        </canvas>
+      </div>
+    </div>
+  </body>
+</html>

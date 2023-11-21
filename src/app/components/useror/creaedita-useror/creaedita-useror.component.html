@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+</head>
+<body>
+<div class="container" style="text-align: center">
+<h2>Registro de usuarios</h2>
+<form [formGroup]="form" (submit)="aceptar()" class="example-form">
+<mat-form-field class="example-full-width" *ngIf="edicion">
+<mat-label>idUser</mat-label>
+<input  placeholder="Id" formControlName="idUser" />
+</mat-form-field>
+<br/>
+
+    <mat-form-field >
+    
+    <input
+    matInput
+    placeholder="Nombre"
+    formControlName="userName"/>
+    <mat-error *ngIf="obtenerControlCampo('userName')?.errors?.['required']">
+    El nombre es obligatorio .
+    </mat-error>
+    </mat-form-field>
+    <br />
+    
+
+<mat-form-field >
+<mat-label>Password</mat-label>
+<input
+    matInput [type]="hide ? 'password':'text'"
+    placeholder="Password"
+    formControlName="userPassword"/>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    <mat-error *ngIf="obtenerControlCampo('userPassword')?.errors?.['required']">
+    El password es obligatorio .
+    </mat-error>
+</mat-form-field>
+
+<br />
+<mat-form-field >
+    <mat-label>Correo Electronico</mat-label>
+    <input
+        type="email"
+        name="email"
+        ngModel email
+        matInput
+        placeholder="email"
+        formControlName="userEmail"/>
+        <mat-error *ngIf="obtenerControlCampo('userEmail')?.errors?.['required']">
+        El correo es obligatorio .
+        </mat-error>
+        </mat-form-field>
+    
+    <br />
+    
+
+
+
+    <mat-form-field >
+      <input
+      matInput
+      placeholder="Ingrese fecha de nacimiento"
+      [matDatepicker]="picker"
+      formControlName="userAge"
+      [max]="maxFecha"
+      />
+      <mat-hint>YYYY/MM/DD</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="obtenerControlCampo('userAge')?.errors?.['required']" >
+      La fecha es obligatoria.
+      </mat-error>
+  </mat-form-field>
+  
+  <br/>
+
+
+
+<button  class="btn-verde btn-regular" routerLink="/components/users/lista">Aceptar</button>
+<!--<button  class="btn-rojo btn-regular" routerLink="components/typeusers/lista">Cancelar</button>-->
+<p>{{ mensaje }}</p>
+</form>
+</div>
+<p>¿Ya tienes una cuenta? Regístrate <a routerLink="../../../login/">Aqui</a></p>
+
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="containe" >
+      <div>
+        <h2>Conéctate a tu cuenta</h2>
+      <mat-form-field class="example-full-width">
+        <mat-label>Usuario</mat-label>
+        <input  placeholder="Username" [(ngModel)]="username" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="password"
+        />
+      </mat-form-field>
+      <br />
+      <button class="btn-ingresar" (click)="login()"  >Iniciar sesión</button>
+      </div>
+
+    <div>
+      <h2>¿No tienes cuenta?</h2>
+      <p>Únete a nosotros para ser parte del <br>cambio positivo hoy mismo</p>
+      <button class="btn-registrate"  routerLink="../components/users/user">REGÍSTRATE</button>
+    </div>  
+    </div>
+  </body>
+</html>

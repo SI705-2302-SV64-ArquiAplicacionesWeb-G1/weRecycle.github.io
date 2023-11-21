@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body >
+    <div style="text-align: center">
+      <h2>Registro de Preguntas Frecuentes</h2>
+
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+       <mat-form-field class="example-full-width" >
+            <mat-label>Id Pregunta Frecuente</mat-label>
+            <input matInput placeholder="Id" formControlName="idFrequenQuestions" />
+          </mat-form-field>
+          <br />
+          
+        <mat-form-field class="example-full-width">
+          <mat-label>Pregunta</mat-label>
+          <input matInput placeholder="pregunta" formControlName="question" />
+          <mat-error
+            *ngIf="obtenerControlCampo('question')?.errors?.['required']"
+          >
+            El nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Respuesta</mat-label>
+          <input matInput placeholder="respuesta" formControlName="answer" />
+          <mat-error
+            *ngIf="obtenerControlCampo('answer')?.errors?.['required']"
+          >
+            El nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Categoria</mat-label>
+          <input matInput placeholder="categoria" formControlName="category" />
+          <mat-error
+            *ngIf="obtenerControlCampo('category')?.errors?.['required']"
+          >
+            El nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nivel de Dificulatad</mat-label>
+          <input
+            matInput
+            placeholder="dificultad"
+            formControlName="dificultYLevel"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('dificultYLevel')?.errors?.['required']"
+          >
+            El nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Elige una fecha</mat-label>
+            <input
+              matInput
+              placeholder="Ingrese fecha"
+              [matDatepicker]="picker"
+              formControlName="updateDate"
+              [max]="maxFecha"
+            />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error
+              *ngIf="obtenerControlCampo('updateDate')?.errors?.['required']"
+            >
+              La fecha de creación es obligatoria.
+            </mat-error>
+          </mat-form-field>
+          <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Estado de Publicación</mat-label>
+          <input
+            matInput
+            placeholder="estado de publicaciones"
+            formControlName="publicationStatus"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('publicationStatus')?.errors?.['required']"
+          >
+            El nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <div class="button-container">
+          <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/frequentquestioncontroller">
+          Cancelar
+        </button>
+        </div>
+        
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

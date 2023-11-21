@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+</head>
+<body>
+<div class="container" style="text-align: center">
+<h2>Registro de ubicaciones</h2>
+<form [formGroup]="form" (submit)="aceptar()" class="example-form">
+<mat-form-field class="example-full-width" *ngIf="edicion">
+<mat-label>idUbication</mat-label>
+<input matInput placeholder="Id" formControlName="idUbication" />
+</mat-form-field>
+<br/>
+
+
+<mat-form-field appearance="fill" class="example-full-width">
+    <input
+    matInput
+    placeholder="Ingrese fecha"
+    [matDatepicker]="picker"
+    formControlName="ubicationDate"
+    [max]="maxFecha"
+    />
+    <mat-hint>DD/MM/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="obtenerControlCampo('ubicationDate')?.errors?.['required']" >
+    La fecha es obligatoria.
+    </mat-error>
+</mat-form-field>
+
+<br/>
+
+
+    <mat-form-field class="example-full-width">
+    <mat-label>Dirección</mat-label>
+    <input
+    matInput
+    placeholder="Dirección"
+    formControlName="addressUbication"/>
+    <mat-error *ngIf="obtenerControlCampo('addressUbication')?.errors?.['required']">
+    La direcciónes obligatoria .
+    </mat-error>
+    </mat-form-field>
+    <br />
+    
+
+<mat-form-field class="example-full-width">
+<mat-label>Ciudad</mat-label>
+<input
+    matInput
+    placeholder="Ciudad"
+    formControlName="cityUbication"/>
+    <mat-error *ngIf="obtenerControlCampo('cityUbication')?.errors?.['required']">
+    La ciudad es obligatoria .
+    </mat-error>
+    </mat-form-field>
+
+<br />
+
+
+<mat-form-field class="example-full-width">
+    <mat-label>Número de contacto</mat-label>
+    <input matInput type="number" placeholder="Número" formControlName="contactUbication"/>
+    <mat-error *ngIf="obtenerControlCampo('contactUbication')?.errors?.['required']">
+        El número de contacto es obligatorio.
+    </mat-error>
+</mat-form-field>
+<br />
+
+<mat-form-field class="example-full-width">
+    <mat-label>Tipo</mat-label>
+    <mat-select formControlName="typeUbication">
+    <mat-option *ngFor="let p of tipos" [value]="p.value">
+    {{ p.viewValue }}
+    </mat-option>
+    </mat-select>
+    <mat-error
+    *ngIf="obtenerControlCampo('typeUbication')?.errors?.['required']"
+    >
+    El tipo es obligatorio.
+    </mat-error>
+    </mat-form-field>
+<br />
+    
+
+<mat-form-field class="example-full-width">
+<mat-label>Descripción</mat-label>
+<input
+ matInput
+ placeholder="descripcion"
+ formControlName="descUbication"/>
+  <mat-error *ngIf="obtenerControlCampo('descUbication')?.errors?.['required']">
+  La descripcion es obligatoria .
+ </mat-error>
+</mat-form-field>
+        
+<br />
+        
+<button mat-raised-button color="primary">Aceptar</button>
+<button mat-raised-button color="warn" routerLink="/ubications">
+Cancelar
+</button>
+<p>{{ mensaje }}</p>
+</form>
+</div>
+</body>
+</html>
+

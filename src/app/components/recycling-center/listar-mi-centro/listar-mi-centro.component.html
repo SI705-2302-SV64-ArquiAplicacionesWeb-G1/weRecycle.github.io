@@ -1,0 +1,18 @@
+<section>
+  <div *ngFor="let centro of filteredData" >
+    <h3>{{ centro.nameRecyclingCenter }}</h3>
+    <p>{{ centro.licenseRecyclingCenter }}</p>
+    <p>Dirección:{{ centro.idUbication.addressUbication }}</p>
+    <p>Número de contacto: {{ centro.idUbication.contactUbication }} </p>
+    <div class="contenedor-hora">
+      <p>Hora de apertura:  {{ centro.openinghourRecyclingCenter }}:00</p>
+    <p>Hora de cierre:  {{ centro.closingtimeRecyclingCenter }}:00</p>
+    </div>
+   <div class="contenedor-btn">
+    <button class="btn-verde btn-regular" [routerLink]="[ centro.idRecyclingCenter]">Editar</button>
+    <button class="btn-rojo btn-regular" (click)="eliminar(centro.idRecyclingCenter)"> Eliminar </button>
+
+  </div> 
+    
+  </div>
+</section>

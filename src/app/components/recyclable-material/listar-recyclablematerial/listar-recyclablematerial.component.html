@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <div class="container-title">
+        <h1 class="title1">!Te Damos la Bienvenida a WeRecycle!</h1>
+    </div>
+    <mat-form-field class="buscador" >
+        <input matInput (keyup)="filter($event)" placeholder="buscar" /><mat-icon class="icon-search">search</mat-icon>
+      </mat-form-field>
+  <div class="container">
+    <div class="card-container">
+      <div class="card" *ngFor="let element of filteredData">
+        <div class="card-content">
+          <div class="card-header">
+            <div class="card-avatar" [style.background-image]="'url(assets/avatars/avatar1.jpg)'"></div>
+            <div class="title-subtitle-container">
+            </div>
+          </div>
+          <div class="card-content-text">
+            <div class="card-text title">{{ element.nameRecyclableMaterial }}</div>
+            <div class="card-text">Costo: {{ element.costMaterial }}</div>
+          </div>
+          
+          <div class="card-actions" style="text-align: right;">
+            <!--<button class="ver-mas" mat-raised-button  [routerLink]="['ediciones', element.idPublication]">Ver más</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  
+</body>
+</html>
+

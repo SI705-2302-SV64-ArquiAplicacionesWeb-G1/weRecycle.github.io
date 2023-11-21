@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card-container">
+        <div class="card" *ngFor="let element of dataSource.data">
+          <div class="card-content">
+            <div style="text-align: right">
+              <!--<button class="ver-mas" mat-raised-button  [routerLink]="['ediciones', element.idPublication]">Ver más</button>-->
+              <button
+                class="volver"
+                mat-raised-button
+                routerLink="/components/PublicationController"
+              >
+                Volver
+              </button>
+            </div>
+            <div class="card-header">
+              <div
+                class="card-avatar"
+                [style.background-image]="'url(assets/avatars/avatar1.jpg)'"
+              ></div>
+              <div class="title-subtitle-container">
+                <div class="card-title" style="text-align: center">
+                  {{ element.title }}
+                </div>
+                <div class="card-subtitle" style="text-align: right">
+                  {{ element.datePublication }}
+                </div>
+
+              </div>
+              
+              
+            </div>
+            <div style="text-align: center;" class="card-content-text">
+              <img class="card-image" src="assets/uploads/Publicacion01.jpg" alt="Image">
+              <div class="card-text">{{ element.description }}</div>
+            </div>
+          </div>
+          <div class="container" style="text-align: center">
+     
+            <form [formGroup]="form" (submit)="aceptar2()" class="example-form">
+           
+              <button class="ver-mas btn-verde" >dar likes</button>
+             
+              <p>{{ mensaje }}</p>
+            </form>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+ 
+
+
+
+
+    <div>
+      <div class="container" style="text-align: center">
+       
+        <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+         
+          <br />
+          <mat-form-field class="example-full-width">
+            <mat-label>descripcion</mat-label>
+            <input
+              matInput
+              placeholder="descripcion"
+              formControlName="descriptions"
+            />
+            <mat-error
+              *ngIf="obtenerControlCampo('descriptions')?.errors?.['required']"
+            >
+              El estado es obligatorio .
+            </mat-error>
+          </mat-form-field>  <button class="ver-mas btn-verde">Aceptar</button>
+         
+          <p>{{ mensaje }}</p>
+        </form>
+      </div>
+<div><!-- Agrega esto en tu archivo HTML donde quieras mostrar la cantidad de likes -->
+  <div>
+    <p>Cantidad de Likes: {{ cantidadLikes }}</p>
+  </div>
+  </div>
+
+    </div>
+    <div>
+      <!-- En tu componente Angular -->
+      <table *ngIf="listacomentarios.length > 0" class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Itera sobre la lista de comentarios -->
+          <tr *ngFor="let comentario of listacomentarios">
+            <td>{{ comentario.idComment }}</td>
+            <td>{{ comentario.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Si deseas mostrar un mensaje cuando no hay comentarios -->
+      <div *ngIf="listacomentarios.length === 0">
+        No hay comentarios disponibles.
+      </div>
+    </div>
+    <!--<div class="container" style="text-align: center">
+      >
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>idPublication</mat-label>
+          <input matInput placeholder="Id" formControlName="idPublication" />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Titulo</mat-label>
+          <input matInput placeholder="titulo" formControlName="title" />
+          <mat-error *ngIf="obtenerControlCampo('title')?.errors?.['required']">
+            El titulo es obligatorio .
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Descripción</mat-label>
+          <input matInput placeholder="description" formControlName="description" />
+          <mat-error *ngIf="obtenerControlCampo('description')?.errors?.['required']">
+            La descripción es obligatorio .
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        !--<div>
+          <input type="file">
+        </div>--
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Archivo</mat-label>
+          <input matInput placeholder="archivo" formControlName="archivo" />
+          <mat-error *ngIf="obtenerControlCampo('archivo')?.errors?.['required']">
+            El titulo es obligatorio .
+          </mat-error>
+        </mat-form-field>
+        <br />
+      
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Elige una fecha</mat-label>
+          <input
+            matInput
+            placeholder="Ingrese fecha"
+            [matDatepicker]="picker"
+            formControlName="datePublication"
+            [max]="maxFecha"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="obtenerControlCampo('datePublication')?.errors?.['required']"
+          >
+            La fecha de creación es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        
+        <mat-form-field class="txtusuario">
+          <mat-label>Usuario </mat-label>
+          <mat-select formControlName="idUser">
+            <mat-option
+              *ngFor="let u of listaUsuarios"
+              [value]="u.idUser"
+            >
+              {{ u.userName }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('idUser')?.errors?.['required']"
+          >
+            El Esuario es obligatorio.
+          </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field class="txtusuario">
+            <mat-label>Tipo Recurso </mat-label>
+            <mat-select formControlName="id_TypeRecurso">
+              <mat-option
+                *ngFor="let u of listaTiporecurso"
+                [value]="u.idTypeRecurso"
+              >
+                {{ u.typeRecursotype }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('id_TypeRecurso')?.errors?.['required']"
+            >
+              El Esuario es obligatorio.
+            </mat-error>
+        </mat-form-field>
+
+
+        !-- Esto es un comentario en HTML.
+        <mat-form-field class="txtusuario">
+          <mat-label>Typo Usuario </mat-label>
+          <mat-select formControlName="id_TypeRecurso">
+            <mat-option
+              *ngFor="let u of listaTiporecurso"
+              [value]="u.idTypeRecurso"
+            >
+              {{ u.idTypeRecurso }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('idTypeRecurso')?.errors?.['required']"
+          >
+            El Esuario es obligatorio.
+          </mat-error>
+      </mat-form-field> --
+
+      <div class="contenedor-btn">
+        <button class="btn-verde btn-regular" >Aceptar</button>
+        <button class="btn-rojo btn-regular" routerLink="/components/PublicationController">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </div>
+
+        
+      </form>
+    </div>-->
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br>
+    <div class="container">
+    <div style="text-align: center;">
+        <h2>Cantidad de Publicaciones por Tipo</h2>
+    </div>
+    <br>
+    <div class="contenido" style="text-align: center;">
+        <canvas
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabel"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [type]="barCharType"
+
+        >
+        </canvas>
+
+    </div>
+</div>
+</body>
+</html>

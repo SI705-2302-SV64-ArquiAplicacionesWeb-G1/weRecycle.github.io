@@ -1,0 +1,23 @@
+mat-form-field{
+    width: 100%;
+    margin: auto;
+}
+
+.container{
+padding: 30px 90px;
+}
+
+h2{
+    margin-bottom: 50px;
+}
+
+.contenedor-btn{
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.contenedor-btn button{
+    margin-left: 20px;
+}

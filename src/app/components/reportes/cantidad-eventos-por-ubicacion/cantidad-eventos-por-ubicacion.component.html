@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report02</title>
+</head>
+<body>
+    <div class="container">
+    <div style="text-align: center">
+        <h2>Cantidad de eventos por ciudad</h2>
+    </div>
+    <div style="text-align: center">
+     <canvas
+     baseChart
+     [datasets]="barChartData"
+     [labels]="barchartLabels"
+     [options]="barChartOptions"
+     [legend]="barChartLegend"
+     [type]="barChartType"   
+     >
+
+
+     </canvas>
+    </div>
+   </div>
+</body>
+</html>

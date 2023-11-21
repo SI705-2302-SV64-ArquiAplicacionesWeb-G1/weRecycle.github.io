@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <br />
+        <h2 style="text-align: center">Lista de ubicaciones</h2> <!-- Cambié "ubicaiones" a "ubicaciones" -->
+        <div style="text-align: right">
+            <button mat-raised-button color="primary" routerLink="/ubications/mapa">
+                Nuevo
+            </button>
+        </div>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Agregué un atributo para definir las columnas que se mostrarán -->
+            <ng-container matColumnDef="idUbication">
+                <th mat-header-cell *matHeaderCellDef>Código</th>
+                <td mat-cell *matCellDef="let element">{{ element.idUbication }}</td>
+            </ng-container>
+
+            
+              
+
+                <ng-container matColumnDef="addressUbication">
+                    <th mat-header-cell *matHeaderCellDef>Dirección</th>
+                    <td mat-cell *matCellDef="let element">{{ element.addressUbication }}</td>
+                </ng-container>
+                
+                <ng-container matColumnDef="ciudad">
+                    <th mat-header-cell *matHeaderCellDef>Ciudad</th>
+                    <td mat-cell *matCellDef="let element">{{ element.cityUbication }}</td>
+                </ng-container>
+    
+                <ng-container matColumnDef="ubicationDate">
+                    <th mat-header-cell *matHeaderCellDef>Fecha</th>
+                    <td mat-cell *matCellDef="let element">{{ element.ubicationDate }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="contactUbication">
+                    <th mat-header-cell *matHeaderCellDef>Número de contacto</th>
+                    <td mat-cell *matCellDef="let element">{{ element.contactUbication }}</td>
+                </ng-container>
+
+                <!-- Otras columnas -->
+            <!-- Otras columnas -->
+ 
+  
+        <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+        <button
+        mat-raised-button
+        color="warn"
+        [routerLink]="['ediciones', element.idUniversity]"
+        >
+        Actualizar
+        </button>
+        </td></ng-container
+        >
+        <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+        <button
+        mat-raised-button
+        color="accent"
+        (click)="eliminar(element.idUbication)"
+        >
+        Eliminar
+        </button>
+        </td>
+        </ng-container
+        >
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+        ></mat-paginator>
+   
+
+    </div>
+
+  
+</body>
+</html>

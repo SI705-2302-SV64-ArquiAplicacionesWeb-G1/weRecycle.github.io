@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="contenedor-comunidad">
+    <div class="card-frase">
+      <h2><span>Únete a la </span> <br>Comunidad</h2>
+      <p>comparte experiencias, tips <br>
+        entre amigos. </p>
+
+        <button mat-button [matMenuTriggerFor]="submenu">Escribir</button>
+          <mat-menu #submenu="matMenu" >
+          <button mat-menu-item routerLink="">Mis Publicaciones</button>
+          <button mat-menu-item routerLink="/components/PublicationController/nuevo">Crear</button>
+        </mat-menu>
+    
+       <div class="icon-blog"></div> 
+    </div>
+
+   
+  </div>
+ 
+  <div class="container">
+    <div class="card-container">
+      <div class="card" *ngFor="let element of dataSource.data">
+        <div class="card-content">
+          <div class="card-header">
+            <div class="card-avatar" [style.background-image]="'url(assets/avatars/avatar1.jpg)'"></div>
+            <div class="title-subtitle-container">
+              <div class="card-title">{{ element.idUser.userName }}</div>
+            </div>
+          </div>
+          <img style="text-align: center;" class="card-image" src="assets/uploads/Publicacion02.jpg" alt="Image">
+          <div class="card-content-text">
+            <div class="card-text title">{{ element.title }}</div>
+            <div class="card-text">{{ element.datePublication }}</div>
+          </div>
+          
+          <div class="card-actions" style="text-align: right;">
+            <!--<button class="ver-mas" mat-raised-button  [routerLink]="['ediciones', element.idPublication]">Ver más</button>-->
+            <button class="ver-mas"  [routerLink]="['publicacion', element.idPublication]">Leer más</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  
+</body>
+</html>
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="text-align: center"><h2>Listar Publicaciones</h2></div>
+
+    <div class="container">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!--- Note that these columns can be defined in any order.
+
+                  The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column --
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef>Código</th>
+
+          <td mat-cell *matCellDef="let element">
+            {{ element.idPublication }}
+          </td>
+        </ng-container>
+
+        <!-- Name Column --
+
+        <ng-container matColumnDef="titulo">
+          <th mat-header-cell *matHeaderCellDef>titulo</th>
+
+          <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>Descripción</th>
+
+          <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+
+          <td mat-cell *matCellDef="let element">{{ element.datePublication }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tiporecurso">
+          <th mat-header-cell *matHeaderCellDef>Id Tipo Recurso</th>
+
+          <td mat-cell *matCellDef="let element">{{ element.id_TypeRecurso.typeRecursotype }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="usuario">
+          <th mat-header-cell *matHeaderCellDef>Id Usuario</th>
+
+          <td mat-cell *matCellDef="let element">{{ element.idUser.userName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="archivo">
+          <th mat-header-cell *matHeaderCellDef>Archivo</th>
+
+          <td mat-cell *matCellDef="let element">{{ element.archivo }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </body>
+</html>
+-->

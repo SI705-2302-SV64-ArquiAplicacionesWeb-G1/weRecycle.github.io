@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de usermaterial</h2>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <mat-form-field class="example-full-width">
+            <mat-label>idUser </mat-label>
+            <mat-select formControlName="idUser">
+              <mat-option
+                *ngFor="let u of listaUsuario"
+                [value]="u.idUser"
+              >
+                {{ u.userName }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('idUser')?.errors?.['required']"
+            >
+              El usuario es obligatorio.
+            </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>idRecyclableMaterial</mat-label>
+            <mat-select formControlName="idRecyclableMaterial">
+              <mat-option
+                *ngFor="let u of listaMateriales"
+                [value]="u.idRecyclableMaterial"
+              >
+                {{ u.idRecyclableMaterial }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('idRecyclableMaterial')?.errors?.['required']"
+            >
+              El usuario es obligatorio.
+            </mat-error>
+        </mat-form-field>
+        <br />
+
+        <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/componentsypeusers/lista">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

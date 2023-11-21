@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body >
+    <div style="text-align: center">
+      <h2>Registro Tipo Recurso </h2>
+
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+       <mat-form-field class="example-full-width" >
+            <mat-label>Id Pregunta Frecuente</mat-label>
+            <input matInput placeholder="Id" formControlName="idTypeRecurso" />
+          </mat-form-field>
+          <br />
+          
+        <mat-form-field class="example-full-width">
+          <mat-label>Tipo de Recurso</mat-label>
+          <input matInput placeholder="recurso" formControlName="typeRecursotype" />
+          <mat-error
+            *ngIf="obtenerControlCampo('typeRecursotype')?.errors?.['required']"
+          >
+            El nombre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+
+        <div class="button-container">
+          <button mat-raised-button color="primary">Aceptar</button>
+        <button mat-raised-button color="warn" routerLink="/typeRecursoController">
+          Cancelar
+        </button>
+        </div>
+        
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

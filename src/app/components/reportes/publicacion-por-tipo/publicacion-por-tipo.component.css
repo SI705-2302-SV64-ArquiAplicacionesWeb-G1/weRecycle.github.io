@@ -1,0 +1,15 @@
+.contenido{
+    width: 80%; /* 80% del ancho del contenedor padre */
+    max-width: 900px; /* Máximo ancho de 600 píxeles */
+    margin: 0 auto; /* Centrar el div horizontalmente */
+    border: 1px solid #000; /* Borde de 1 píxel de color negro (opcional) */
+    background-color: #f0f0f0; /* Color de fondo (opcional) */
+    padding: 20px; /* Espaciado interno (opcional) */
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    #miDiv {
+      width: 90%; /* Reducir el ancho al 90% en pantallas más pequeñas */
+    }
+  }

@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+
+   <div class="container" style="text-align: center">
+      <h2>Registro de Publicaciones</h2>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>idPublication</mat-label>
+          <input matInput placeholder="Id" formControlName="idPublication" />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Titulo</mat-label>
+          <input matInput placeholder="titulo" formControlName="title" />
+          <mat-error *ngIf="obtenerControlCampo('title')?.errors?.['required']">
+            El titulo es obligatorio .
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Descripción</mat-label>
+          <input matInput placeholder="description" formControlName="description" />
+          <mat-error *ngIf="obtenerControlCampo('description')?.errors?.['required']">
+            La descripción es obligatorio .
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <!--<div>
+          <input type="file">
+        </div>-->
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Archivo</mat-label>
+          <input matInput placeholder="archivo" formControlName="archivo" />
+          <mat-error *ngIf="obtenerControlCampo('archivo')?.errors?.['required']">
+            El titulo es obligatorio .
+          </mat-error>
+        </mat-form-field>
+        <br />
+      
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Elige una fecha</mat-label>
+          <input
+            matInput
+              placeholder="Ingrese fecha"
+              [matDatepicker]="picker"
+              formControlName="datePublication"
+              [max]="maxFecha"
+              
+              
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <br />
+
+        
+        <mat-form-field class="txtusuario">
+          <mat-label>Usuario </mat-label>
+          <mat-select formControlName="idUser">
+            <mat-option
+              *ngFor="let u of listaUsuarios"
+              [value]="u.idUser"
+            >
+              {{ u.userName }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('idUser')?.errors?.['required']"
+          >
+            El Esuario es obligatorio.
+          </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field class="txtusuario">
+            <mat-label>Tipo Recurso </mat-label>
+            <mat-select formControlName="id_TypeRecurso">
+              <mat-option
+                *ngFor="let u of listaTiporecurso"
+                [value]="u.idTypeRecurso"
+              >
+                {{ u.typeRecursotype }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('id_TypeRecurso')?.errors?.['required']"
+            >
+              El Esuario es obligatorio.
+            </mat-error>
+        </mat-form-field>
+
+
+        <!-- Esto es un comentario en HTML.
+        <mat-form-field class="txtusuario">
+          <mat-label>Typo Usuario </mat-label>
+          <mat-select formControlName="id_TypeRecurso">
+            <mat-option
+              *ngFor="let u of listaTiporecurso"
+              [value]="u.idTypeRecurso"
+            >
+              {{ u.idTypeRecurso }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('idTypeRecurso')?.errors?.['required']"
+          >
+            El Esuario es obligatorio.
+          </mat-error>
+      </mat-form-field> -->
+
+      <div class="contenedor-btn">
+        <button class="btn-verde btn-regular" >Aceptar</button>
+        <button class="btn-rojo btn-regular" routerLink="/components/PublicationController">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </div>
+
+        
+      </form>
+    </div>
+  </body>
+</html>

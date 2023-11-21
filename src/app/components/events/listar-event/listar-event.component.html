@@ -1,0 +1,72 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false" >
+        
+        <mat-form-field class="buscador">
+            <input matInput  (keyup)="filter($event)" placeholder="Buscador" /><mat-icon class="icon-search">search</mat-icon>
+        </mat-form-field>
+    
+
+        <h4>Resultados</h4>
+
+        <mat-card class="mat-elevation-z8" >
+            <mat-card-content *ngFor="let evento of filteredData" class="example-card" (click)="selectEvent(evento)">
+              <div class="card-container">
+                <mat-card >
+                  <p>Vacantes: {{evento.numberParticipant}}</p><br>
+
+                  <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{ evento.title }}</mat-card-title>
+                    
+                  </mat-card-header>
+                  <mat-card-content>
+                    <p>{{ evento.idUbication.addressUbication }}</p>
+                    <p>Fecha: {{ evento.date }} </p>
+                    <p>Hora: {{ evento.hora }}:00</p>
+                  </mat-card-content>
+                </mat-card>
+         <br> 
+              </div>
+            </mat-card-content>
+          </mat-card> 
+
+    </mat-sidenav>
+
+    <form [formGroup]="miFormulario">
+      <mat-form-field class="filtro-fecha">
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+</form>
+    <mat-card class="event-info-container" >
+      
+        <mat-card-content >
+              <mat-card-header>
+                <mat-card-title><h3>{{ eventSelected?.title }}</h3></mat-card-title>
+                
+              </mat-card-header>
+              <mat-card-content>
+                <div class="contendor-info-select">
+                    <p> {{eventSelected?.idUbication.addressUbication}} -  {{eventSelected?.idUbication.cityUbication}}</p>
+                    <div>
+                        <p> {{eventSelected?.idUbication.ubicationDate}}</p>
+                        <p> {{eventSelected?.hora}}:00 horas</p>
+                    </div>
+                </div>
+                <button class="btn-verde btn-regular" (click)="seguirEvento()" [ngClass]="{'btn-rojo': userFollowed}">
+                  {{ userFollowed ? 'Dejar de seguir' : 'Seguir' }}
+                </button>
+              
+               <p class="p-descripcion">{{eventSelected?.description}}</p>
+              </mat-card-content>
+        </mat-card-content>
+      </mat-card> 
+
+      <button class="btn-crear" routerLink="nuevo">crear</button>
+    </mat-sidenav-container>
+  
